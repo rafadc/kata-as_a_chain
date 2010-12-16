@@ -1,0 +1,13 @@
+In this kata we will write a fluent interfarce for a simple rule engine.
+
+We must implement an API that is capable of doing something as similar as possible to the following:
+
+when_successful ( obj.m() ).then_call ( obj.x() ).as_a_chain()
+when_successful ( obj.m() ).then_call ( obj.x(), as_a_chain() )
+when_successful ( obj.m() ).then_call ( obj.x() ).with_args(args)
+
+We will consider that a call is successful if it does not throw exceptions.
+
+Of course TDD is mandatory ;)
+
+This exercise was proposed on Dec 16th by Carlos Blé in a Coding Dojo in Madrid.
