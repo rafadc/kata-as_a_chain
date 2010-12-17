@@ -33,5 +33,14 @@ class FluentExecutionAPITest < Test::Unit::TestCase
         myObject.expects(:method_to_be_called).with(parameter).once
         When.success{myObject.method}.then_call(:as_a_chain){|x| myObject.method_to_be_called(x)}
     end
+
+    def test_with_one_argument
+        argument = 'Fixed argument'
+        myObject = mock()
+        myObject.expects(:method).once
+        myObject.expects(:method_to_be_called).with(argument).once
+        When.success{myObject.method}.then_call{|x| myObject.method_to_be_called(x)}.with_args(argument)
+    end
+
  
 end

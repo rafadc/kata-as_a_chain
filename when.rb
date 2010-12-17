@@ -26,6 +26,13 @@ class When
         end
     end
 
+    def with_args(arguments)
+        if precondition_is_executed_successfuly
+            @block_to_call.call arguments
+        end
+    end
+
+
     def precondition_is_executed_successfuly
         begin
             @precondition_result = @precondition.call
