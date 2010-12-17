@@ -4,9 +4,9 @@ require 'when'
 
 class FluentExecutionAPITest < Test::Unit::TestCase
 
-    def test_when_success_then_simple_combination
+    def test_when_success_with_nothing_to_chain
         myObject = mock()
-        myObject.expects(:method).once.returns('Useless value')
+        myObject.expects(:method).once.returns(nil)
         myObject.expects(:method_to_be_called).once
         When.success{myObject.method}.then_call{myObject.method_to_be_called}.as_a_chain
     end
