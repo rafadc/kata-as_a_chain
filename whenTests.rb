@@ -26,6 +26,12 @@ class FluentExecutionAPITest < Test::Unit::TestCase
         When.success{myObject.method}.then{|x| myObject.method_to_be_called(x)}.as_a_chain
     end
 
+    def test_overload_of_that
+        parameter = 'Highly difficult to calculate value'
+        myObject = mock()
+        myObject.expects(:method).once.returns(parameter)
+        myObject.expects(:method_to_be_called).with(parameter).once
+        When.success{myObject.method}.then(:as_a_chain){|x| myObject.method_to_be_called(x)}
+    end
  
-
 end

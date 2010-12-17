@@ -10,9 +10,20 @@ class When
         return instance
     end
 
-    def then(&block)
-        @block_to_call = block
-        return self
+    def then(type_of_chain=nil,&block)
+        if type_of_chain_is_not_specified?(type_of_chain)
+            @block_to_call = block
+            return self
+        else
+            @block_to_call = block
+            as_a_chain
+        end
+    end
+
+    def as_a_chain
+        if precondition_is_executed_successfuly
+            @block_to_call.call @precondition_result
+        end
     end
 
     def precondition_is_executed_successfuly
@@ -24,10 +35,9 @@ class When
         end
     end
 
-    def as_a_chain
-        if precondition_is_executed_successfuly
-            @block_to_call.call @precondition_result
-        end
+    def type_of_chain_is_not_specified?(type)
+        type==nil
     end
+                
 end
 
