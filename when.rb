@@ -10,7 +10,7 @@ class When
         return instance
     end
 
-    def then(type_of_chain=nil,&block)
+    def then_call(type_of_chain=nil,&block)
         if type_of_chain_is_not_specified?(type_of_chain)
             @block_to_call = block
             return self
