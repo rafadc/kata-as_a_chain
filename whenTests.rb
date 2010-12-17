@@ -35,11 +35,12 @@ class FluentExecutionAPITest < Test::Unit::TestCase
     end
 
     def test_with_args_with_one_argument
-        argument = 'Fixed argument'
+        firstArgument = 'Fixed argument'
+        secondArgument = 'Another fixed argument'
         myObject = mock()
         myObject.expects(:method).once
-        myObject.expects(:method_to_be_called).with(argument).once
-        When.success{myObject.method}.then_call{|x| myObject.method_to_be_called(x)}.with_args(argument)
+        myObject.expects(:method_to_be_called).with(firstArgument,secondArgument).once
+        When.success{myObject.method}.then_call{|x,y| myObject.method_to_be_called(x,y)}.with_args(firstArgument,secondArgument)
     end
 
  
